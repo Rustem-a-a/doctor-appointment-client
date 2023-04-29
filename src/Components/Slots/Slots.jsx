@@ -3,6 +3,7 @@ import {Box, Paper} from "@mui/material";
 import {grey} from "@mui/material/colors";
 
 const Slots = (props) => {
+
     return (
         <Box sx={{
             display:'flex',
@@ -12,11 +13,13 @@ const Slots = (props) => {
             backgroundColor:'yellow'}
         }>
             {props.currentDoctor?.slots?.map(v=>
-                <Paper sx={{
+                <Paper key={v._id}
+                    sx={{
                     margin:2,
                     width: '150px',
                     height: '50px',
                     backgroundColor: grey["200"],
+                    color: v.free ? 'black' : 'red',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
