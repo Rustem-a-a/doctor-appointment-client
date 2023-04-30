@@ -1,6 +1,6 @@
-# [DEMO](https://rustem-a-a.github.io/doctor's-appointment/)
+# [DEMO](https://rustem-a-a.github.io/doctor-appointment-client//)
 
-# Ресурс для записи на прием к врачу
+# Ресурс для записи на прием к врачуCancel changes
 
 ## В проекте присутсвует:
 - Главная с врачами и свободным\занятым временем приема
