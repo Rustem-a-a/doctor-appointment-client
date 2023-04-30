@@ -1,12 +1,15 @@
 import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+import {deleteSlotArraySlotSlice} from "./slotSlice";
 
+const initialState = {
+    currentDoctor: {},
+}
 
 export const getDoctorDoctorSlice = createAsyncThunk('doctorSlice/getDoctorDoctorSlice',
     async (id)=>{
         try{
             const {data} = await axios.get(`http://localhost:5000/doctor/getDoctor/${id.doctor_id}`)
-            console.log(data)
             return data
         }
         catch (e) {
@@ -14,35 +17,57 @@ export const getDoctorDoctorSlice = createAsyncThunk('doctorSlice/getDoctorDocto
         }
     })
 
+export const updateDoctorSlotDoctorSlice = createAsyncThunk('doctorSlice/updateDoctorSlotDoctorSlice',
+    async (dataToUpdate)=>{
+        try{
+            const {data} = await axios.post(`http://localhost:5000/doctor/updateDoctorSlot`,dataToUpdate)
+            return data
+        }
+        catch (e) {
+            console.log(e.response.data.message)
+        }
+    })
 
-const initialState = {
-    currentDoctor: {},
+export const refreshDoctorSlotDoctorSlice = createAsyncThunk('doctorSlice/refreshDoctorSlotDoctorSlice',
+    async (dataToUpdate,{_,dispatch})=>{
+        try{
+            const {data} = await axios.post(`http://localhost:5000/doctor/refreshDoctorSlot`,dataToUpdate)
+            dispatch(deleteSlotArraySlotSlice({doctor_id:data._id}))
+            return data
+        }
+        catch (e) {
+            console.log(e)
+        }
+    })
 
-    }
 const doctorSlice = createSlice({
     name: 'doctor',
     initialState,
-    reducers:{
-            setCurrentDoctor(state,action){
-                    state.currentDoctor = action.payload
-
-        },
-
-    },
+    reducers:{},
     extraReducers:{
         [getDoctorDoctorSlice.pending]:(state)=> {
-            console.log('pending')
         },
         [getDoctorDoctorSlice.fulfilled]:(state,action)=>{
             state.currentDoctor = action.payload
         },
         [getDoctorDoctorSlice.rejected]:(state)=>{
-            console.log('reject')
+        },
+
+        [updateDoctorSlotDoctorSlice.pending]:(state)=> {
+        },
+        [updateDoctorSlotDoctorSlice.fulfilled]:(state,action)=>{
+            state.currentDoctor = action.payload
+        },
+        [updateDoctorSlotDoctorSlice.rejected]:(state)=>{
+        },
+
+        [refreshDoctorSlotDoctorSlice.pending]:(state)=> {
+        },
+        [refreshDoctorSlotDoctorSlice.fulfilled]:(state,action)=>{
+            state.currentDoctor = action.payload
+        },
+        [refreshDoctorSlotDoctorSlice.rejected]:(state)=>{
         },
     }
 })
-
-export const {
-    setCurrentDoctor
-} = doctorSlice.actions
 export default doctorSlice.reducer
