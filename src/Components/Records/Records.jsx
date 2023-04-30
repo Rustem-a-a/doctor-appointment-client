@@ -5,7 +5,7 @@ import {DataGrid} from '@mui/x-data-grid';
 const columns = [
     {
         field: 'user',
-        headerName: 'Пациенты',
+        headerName: 'Пациент',
         width: 150,
         editable: false,
         headerAlign: 'center',
@@ -15,7 +15,16 @@ const columns = [
     },
     {
         field: 'doctor',
-        headerName: 'Доктора',
+        headerName: 'Направление',
+        editable: false,
+        headerAlign: 'center',
+        align: 'left',
+        flex: 1,
+        headerClassName: 'super-app-theme--header'
+    },
+    {
+        field: 'name',
+        headerName: 'Доктор',
         editable: false,
         headerAlign: 'center',
         align: 'left',
@@ -38,8 +47,14 @@ export default function Records({rows}) {
     const rowsNew = rows.map(v => ({
         _id: v._id,
         user: v.user_id.name,
-        doctor: v.doctor_id.spec + '  -  ' + v.doctor_id.name,
-        slot: v.slot
+        doctor: v.doctor_id.spec,
+        name:v.doctor_id.name,
+        slot: new Date(v.slot).toLocaleTimeString('default', {
+            hour: 'numeric',
+            minute: 'numeric',
+        })
+
+
     }))
 
     return (

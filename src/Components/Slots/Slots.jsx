@@ -4,7 +4,7 @@ import {grey} from "@mui/material/colors";
 import {useDispatch} from "react-redux";
 import {refreshDoctorSlotDoctorSlice, updateDoctorSlotDoctorSlice} from "../../store/slices/doctorSlice";
 import {addSlotSlotSlice} from "../../store/slices/slotSlice";
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
 const Slots = (props) => {
@@ -34,7 +34,10 @@ const Slots = (props) => {
                                                doctor_id: props.doctor_id,
                                                slot: v.date_time.start
                                            }))
-                                       toast(`Вы записались на ${v.date_time.start}`)
+                                       toast(`Вы записались на ${new Date(v.date_time.start).toLocaleTimeString('default', {
+                                           hour: 'numeric',
+                                           minute: 'numeric',
+                                       })}`)
                                    } else {
                                        toast("Слот на данное время занят")
                                    }
@@ -54,7 +57,13 @@ const Slots = (props) => {
                                display: 'flex',
                                alignItems: 'center',
                                justifyContent: 'center'
-                           }} elevation={v.free ? 3 : 0}>{v.date_time.start + ' - ' + v.date_time.end}</Paper>
+                           }} elevation={v.free ? 3 : 0}>{new Date(v.date_time.start).toLocaleTimeString('default', {
+                        hour: 'numeric',
+                        minute: 'numeric',
+                    }) + ' - ' + new Date(v.date_time.end).toLocaleTimeString('default', {
+                        hour: 'numeric',
+                        minute: 'numeric',
+                    })}</Paper>
                 )}
             </Box>
             {Object.keys(props.currentDoctor).length !== 0 && <Button variant={'contained'} onClick={() => {

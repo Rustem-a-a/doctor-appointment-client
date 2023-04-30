@@ -1,5 +1,5 @@
 import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../axios";
 import {deleteSlotArraySlotSlice} from "./slotSlice";
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
 export const getDoctorDoctorSlice = createAsyncThunk('doctorSlice/getDoctorDoctorSlice',
     async (id)=>{
         try{
-            const {data} = await axios.get(`http://localhost:5000/doctor/getDoctor/${id.doctor_id}`)
+            const {data} = await axios.get(`doctor/getDoctor/${id.doctor_id}`)
             return data
         }
         catch (e) {
@@ -20,7 +20,7 @@ export const getDoctorDoctorSlice = createAsyncThunk('doctorSlice/getDoctorDocto
 export const updateDoctorSlotDoctorSlice = createAsyncThunk('doctorSlice/updateDoctorSlotDoctorSlice',
     async (dataToUpdate)=>{
         try{
-            const {data} = await axios.post(`http://localhost:5000/doctor/updateDoctorSlot`,dataToUpdate)
+            const {data} = await axios.post(`doctor/updateDoctorSlot`,dataToUpdate)
             return data
         }
         catch (e) {
@@ -31,7 +31,7 @@ export const updateDoctorSlotDoctorSlice = createAsyncThunk('doctorSlice/updateD
 export const refreshDoctorSlotDoctorSlice = createAsyncThunk('doctorSlice/refreshDoctorSlotDoctorSlice',
     async (dataToUpdate,{_,dispatch})=>{
         try{
-            const {data} = await axios.post(`http://localhost:5000/doctor/refreshDoctorSlot`,dataToUpdate)
+            const {data} = await axios.post(`doctor/refreshDoctorSlot`,dataToUpdate)
             dispatch(deleteSlotArraySlotSlice({doctor_id:data._id}))
             return data
         }

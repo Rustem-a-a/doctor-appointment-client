@@ -23,8 +23,8 @@ function App() {
     }, [])
     return (
         <Box className="App" display={"flex"} justifyContent={"center"} alignItems={"center"} flexDirection={"column"}>
-            <Slots user_id={user_id} doctor_id={doctor_id} currentDoctor={currentDoctor}/>
             <InputFields user_id={user_id} doctor_id={doctor_id} setDoctor_id={setDoctor_id} setUser_id={setUser_id}/>
+            <Slots user_id={user_id} doctor_id={doctor_id} currentDoctor={currentDoctor}/>
             {isLoadingSlotArray.length
                 ? <CircularProgress sx={{marginTop: 200}}/>
                 :
