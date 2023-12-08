@@ -4,6 +4,7 @@ import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {getDoctorDoctorSlice} from "../../store/slices/doctorSlice";
 import {getUserUserSlice} from "../../store/slices/userSlice";
+import styles from './InputFields.module.scss'
 
 const InputFields = ({user_id, setUser_id, doctor_id, setDoctor_id}) => {
     const dispatch = useDispatch()
@@ -18,8 +19,8 @@ const InputFields = ({user_id, setUser_id, doctor_id, setDoctor_id}) => {
         }
     }, [user_id])
     return (
-        <>
-            <Box width={500} display={'flex'} justifyContent={'center'} m={5} gap={3}>
+        <div className={styles.wrapper}>
+            {/*<Box width={500} display={'flex'} justifyContent={'center'} m={5} gap={3} sx={{backgroundColor:'red'}}>*/}
                 <FormControl sx={{backgroundColor: 'white'}} fullWidth>
                     <InputLabel id="user-select-label">Пациент</InputLabel>
                     <Select
@@ -48,8 +49,8 @@ const InputFields = ({user_id, setUser_id, doctor_id, setDoctor_id}) => {
                         <MenuItem value={'644c2cb3f1a313edcf712009'}>Пульмонолог</MenuItem>
                     </Select>
                 </FormControl>
-            </Box>
-        </>
+            {/*</Box>*/}
+        </div>
     );
 };
 

@@ -50,7 +50,7 @@ const Slots = (props) => {
                                cursor: 'pointer',
                                padding: 1,
                                margin: 2,
-                               width: '250px',
+                               width: '150px',
                                height: '30px',
                                backgroundColor: v.free ? null : grey["200"],
                                color: v.free ? 'black' : 'red',

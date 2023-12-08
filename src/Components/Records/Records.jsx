@@ -6,10 +6,10 @@ const columns = [
     {
         field: 'user',
         headerName: 'Пациент',
-        width: 150,
         editable: false,
         headerAlign: 'center',
         align: 'center',
+        flex: 1,
         headerClassName: 'super-app-theme--header',
 
     },
@@ -35,7 +35,7 @@ const columns = [
         field: 'slot',
         headerName: 'Время',
         type: 'number',
-        width: 130,
+        flex: 1,
         editable: false,
         headerAlign: 'center',
         align: 'center',
